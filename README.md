@@ -1,2 +1,2 @@
-# year-cohort-projectName
+# 2021-march-tictactoe
 project template repo
