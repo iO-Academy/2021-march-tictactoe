@@ -1,96 +1,58 @@
-const winningConditions = [ [0, 1, 2], [3, 4, 5], [6, 7, 8], [0, 3, 6], [1, 4, 7], [2, 5, 8], [0, 4, 8], [2, 4, 6]];
-
-// playerOne go when odd, playerTwo go when even. Increments.
-const currentPlayer = 1;
-const playerMarker = 'x';
-
+let startBtn = document.querySelector("#startButton");
+// this determines turn order
+let currentPlayer = 1;
+// this variable holds alternating player symbols
+let playerMarker;
 const tiles = document.querySelectorAll('.tile');
-gameState = ["", "", "", "", "", "", "", "", ""];
+let gameState = ["", "", "", "", "", "", "", "", ""];
 
-// console.log(tiles);
-//
-// tiles.forEach(function (tile) {
-//     tile.addEventListener('click', () => {
-//         console.log(tile);
-//         let clicked = tile.dataset.index;
-//         console.log(clicked);
-//         //assigns player marker based on currentPlayer value
-//         decideTurn(currentPlayer, playerMarker);
-//         //gets index value of tile from data attribute
-//
-//         //as long as tile has not been clicked,
-//         //will add mark to gameState array
-//         //and increment playerScore for next round
-//         if(gameState[clicked] == "") {
-//             addToScreen(tile);
-//            // alterGameState();
-//
-//
-//         }
-//     })
-// })
+function incrementCurrentPlayer() {
+    currentPlayer++;
+    return currentPlayer;
+}
 
 function decideTurn(currentPlayer, playerMarker) {
     if (currentPlayer % 2 == 0) {
-         playerMarker = 'o'
+        playerMarker = 'o'
     } else {
         playerMarker = 'x'
     }
-    currentPlayer++;
-    console.log(currentPlayer)
+    return playerMarker;
 }
 
-
-// beginning of decidePlayer
-// if (currentPlayer % 2 == 0) {
-//     playerMarker = 'o'
-// } else {
-//     playerMarker = 'x'
-// }
-
-function addToScreen(tile) {
+function addToScreen(tile, playerMarker) {
     tile.innerHTML = playerMarker;
 }
 
-//draft for alterGameState
-// function alterGameState() {
-//     let clicked = data - index.getAttribute
-//     //push marker to indexed item in array
-//     gameState.splice(clicked, 0, playerMarker)
-// }
-
-
-let gameIsRunning = false;
-
-let startBtn = document.querySelector("#startButton");
+function alterGameState(gameState, clicked, playerMarker) {
+    if(gameState[clicked] == "") {
+        gameState[clicked] = playerMarker;
+        console.log(gameState[clicked]);
+        console.log(gameState);
+        return true;
+    } else {
+        return false;
+    }
+}
 
 startBtn.addEventListener("click", () => {
-    console.log('hello')
     startBtn.style.opacity = 0.5;
-    gameIsRunning = true;
-    while (gameIsRunning && currentPlayer < 9 ) {
         tiles.forEach(function (tile) {
             tile.addEventListener('click', () => {
-                console.log(tile);
-                let clicked = tile.dataset.index;
-                console.log(clicked);
-                //assigns player marker based on currentPlayer value
-                decideTurn(currentPlayer, playerMarker);
                 //gets index value of tile from data attribute
-
+                let clicked = tile.dataset.index;
+                //assigns player marker based on currentPlayer value
+                playerMarker = decideTurn(currentPlayer, playerMarker);
+                let notClicked = alterGameState(gameState, clicked, playerMarker);
                 //as long as tile has not been clicked,
                 //will add mark to gameState array
                 //and increment playerScore for next round
-                if(gameState[clicked] == "") {
-                    addToScreen(tile);
-                    // alterGameState();
-                }
-                if (currentPlayer >= 9) {
-                    gameIsRunning = false;
+                if(notClicked == true) {
+                    addToScreen(tile, playerMarker);
+                    currentPlayer = incrementCurrentPlayer(currentPlayer);
                 }
             })
         })
-    }
-});
+    })
 
 
