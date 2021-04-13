@@ -1,45 +1,41 @@
 const winningConditions = [ [0, 1, 2], [3, 4, 5], [6, 7, 8], [0, 3, 6], [1, 4, 7], [2, 5, 8], [0, 4, 8], [2, 4, 6]];
-let playerTwo =
-    {
-        marker: 'o',
-        score: 0,
-    }
-
-let playerOne =
-    {
-        marker: 'x',
-        score: 0,
-    }
 
 // playerOne go when odd, playerTwo go when even. Increments.
-let currentPlayer = 1;
-let playerMarker = 'x';
+const currentPlayer = 1;
+const playerMarker = 'x';
 
-let grid = document.querySelectorAll('.index');
+const tiles = document.querySelectorAll('.tile');
 gameState = ["", "", "", "", "", "", "", "", ""];
 
 console.log(grid);
 
-
-index.forEach(function (cell) {
-    cell.addEventListener('click', () => {
-        //change marker depending on go
-        if (currentPlayer / 2 == 0) {
-            playerMarker = 'o'
-        } else {
-            playerMarker = 'x'
-        }
-        if (gameState[cellIndex]) !== "") {
-
+tiles.forEach(function (tile) {
+    tile.addEventListener('click', () => {
+        //assigns player marker based on currentPlayer value
+        decidePlayer(currentPlayer, playerMarker);
+        //gets index value of tile from data attribute
+        let clicked = tile.dataset.index;
+        //as long as tile has not been clicked,
+        //will add mark to gameState array
+        //and increment playerScore for next round
+        if(gameState[clicked] == "") {
             alterGameState();
-            add to
-            currentPlayer++
+            currentPlayer++;
         }
 
     })
 })
 
 
+// beginning of decidePlayer
+if (currentPlayer % 2 == 0) {
+    playerMarker = 'o'
+} else {
+    playerMarker = 'x'
+}
+
+
+//draft for alterGameState
 function alterGameState() {
     let clicked = data - index.getAttribute
     //push marker to indexed item in array
