@@ -39,22 +39,22 @@ function alterGameState(gameState, clicked, playerMarker) {
 
 startBtn.addEventListener("click", () => {
     startBtn.style.opacity = 0.5;
-        tiles.forEach(function (tile) {
-            tile.addEventListener('click', () => {
-                //gets index value of tile from data attribute
-                let clicked = tile.dataset.index;
-                //assigns player marker based on currentPlayer value
-                playerMarker = decideTurn(currentPlayer, playerMarker);
-                let notClicked = alterGameState(gameState, clicked, playerMarker);
-                //as long as tile has not been clicked,
-                //will add mark to gameState array
-                //and increment playerScore for next round
-                if(notClicked == true) {
-                    addToScreen(tile, playerMarker);
-                    console.log(currentPlayer);
-                    currentPlayer = incrementCurrentPlayer(currentPlayer);
-                }
-            })
+    tiles.forEach(function (tile) {
+        tile.addEventListener('click', () => {
+            //gets index value of tile from data attribute
+            let clicked = tile.dataset.index;
+            //assigns player marker based on currentPlayer value
+            playerMarker = decideTurn(currentPlayer, playerMarker);
+            let notClicked = alterGameState(gameState, clicked, playerMarker);
+            //as long as tile has not been clicked,
+            //will add mark to gameState array
+            //and increment playerScore for next round
+            if(notClicked == true) {
+                addToScreen(tile, playerMarker);
+                console.log(currentPlayer);
+                currentPlayer = incrementCurrentPlayer(currentPlayer);
+            }
         })
     })
+})
 
