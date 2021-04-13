@@ -67,6 +67,20 @@ section {
     align-items: center;
 }
 
+.clickedX {
+    content: url(../imageAssets/smallX.png);
+    position: relative;
+    top: 15%;
+    left: 15%;
+}
+
+.clickedO {
+    content: url(../imageAssets/smallO.png);
+    position: relative;
+    top: 15%;
+    left: 15%;
+}
+
 #playerInfo {
     display: grid;
     grid-template-columns: 1fr;
