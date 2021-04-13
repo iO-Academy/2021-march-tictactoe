@@ -54,6 +54,7 @@ section {
 
 .tile {
     border: 1px solid white;
+    color: black;
 }
 
 #playerInfo {

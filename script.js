@@ -7,27 +7,38 @@ const playerMarker = 'x';
 const tiles = document.querySelectorAll('.tile');
 gameState = ["", "", "", "", "", "", "", "", ""];
 
-console.log(tiles);
+// console.log(tiles);
+//
+// tiles.forEach(function (tile) {
+//     tile.addEventListener('click', () => {
+//         console.log(tile);
+//         let clicked = tile.dataset.index;
+//         console.log(clicked);
+//         //assigns player marker based on currentPlayer value
+//         decideTurn(currentPlayer, playerMarker);
+//         //gets index value of tile from data attribute
+//
+//         //as long as tile has not been clicked,
+//         //will add mark to gameState array
+//         //and increment playerScore for next round
+//         if(gameState[clicked] == "") {
+//             addToScreen(tile);
+//            // alterGameState();
+//
+//
+//         }
+//     })
+// })
 
-tiles.forEach(function (tile) {
-    tile.addEventListener('click', () => {
-        console.log(tile);
-        //assigns player marker based on currentPlayer value
-        decidePlayer(currentPlayer, playerMarker);
-        //gets index value of tile from data attribute
-        let clicked = tile.dataset.index;
-        console.log(clicked);
-        //as long as tile has not been clicked,
-        //will add mark to gameState array
-        //and increment playerScore for next round
-        if(gameState[clicked] == "") {
-            alterGameState();
-            addToScreen();
-            currentPlayer++;
-        }
-
-    })
-})
+function decideTurn(currentPlayer, playerMarker) {
+    if (currentPlayer % 2 == 0) {
+         playerMarker = 'o'
+    } else {
+        playerMarker = 'x'
+    }
+    currentPlayer++;
+    console.log(currentPlayer)
+}
 
 
 // beginning of decidePlayer
@@ -37,7 +48,7 @@ tiles.forEach(function (tile) {
 //     playerMarker = 'x'
 // }
 
-function addToScreen() {
+function addToScreen(tile) {
     tile.innerHTML = playerMarker;
 }
 
@@ -47,3 +58,39 @@ function addToScreen() {
 //     //push marker to indexed item in array
 //     gameState.splice(clicked, 0, playerMarker)
 // }
+
+
+let gameIsRunning = false;
+
+let startBtn = document.querySelector("#startButton");
+
+startBtn.addEventListener("click", () => {
+    console.log('hello')
+    startBtn.style.opacity = 0.5;
+    gameIsRunning = true;
+    while (gameIsRunning && currentPlayer < 9 ) {
+        tiles.forEach(function (tile) {
+            tile.addEventListener('click', () => {
+                console.log(tile);
+                let clicked = tile.dataset.index;
+                console.log(clicked);
+                //assigns player marker based on currentPlayer value
+                decideTurn(currentPlayer, playerMarker);
+                //gets index value of tile from data attribute
+
+                //as long as tile has not been clicked,
+                //will add mark to gameState array
+                //and increment playerScore for next round
+                if(gameState[clicked] == "") {
+                    addToScreen(tile);
+                    // alterGameState();
+                }
+                if (currentPlayer >= 9) {
+                    gameIsRunning = false;
+                }
+            })
+        })
+    }
+});
+
+
