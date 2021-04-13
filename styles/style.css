@@ -1,151 +1,153 @@
 @font-face {
-    font-family: 'Cake';
-    src: url(Cake_n_Truffles.ttf);
+  font-family: "Cake";
+  src: url(Cake_n_Truffles.ttf);
 }
 
 * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    font-family: 'Cake', sans-serif;
-    color: #E4EBDB;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "Cake", sans-serif;
+  color: #e4ebdb;
 }
 
 body {
-    padding: 1rem;
+  padding: 1rem;
 }
 
 main {
-    background: linear-gradient(45deg, #008D36, #75AA31);
-    width: 1000px;
-    padding: 1rem;
-    margin: auto;
+  background: linear-gradient(45deg, #008d36, #75aa31);
+  width: 1000px;
+  padding: 1rem;
+  margin: auto;
 }
 
 header {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    font-size: 2rem;
-    position: relative;
-    left: 30px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  font-size: 2rem;
+  position: relative;
+  left: 30px;
 }
 
 header img {
-    height: 130px;
+  height: 130px;
 }
 
 section {
-    display: flex;
-    justify-content: space-around;
-    margin-bottom: 5px;
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 5px;
 }
 
 #game {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem;
 }
 
 #gameBoard {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(3, 1fr);
-    height: 35rem;
-    width: 35rem;
-    background-color: #94BF54;
-    background-image: url(../imageAssets/hashGrid.png);
-    background-position: center;
-    background-size: cover;
-    border-radius: 5%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  height: 35rem;
+  width: 35rem;
+  background-color: #94bf54;
+  background-image: url(../imageAssets/hashGrid.png);
+  background-position: center;
+  background-size: cover;
+  border-radius: 5%;
 }
 
 .tile {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .clickedX {
-    content: url(../imageAssets/smallX.png);
-    position: relative;
-    top: 15%;
-    left: 15%;
+  content: url(../imageAssets/smallX.png);
+  position: relative;
+  top: 15%;
+  left: 15%;
 }
 
 .clickedO {
-    content: url(../imageAssets/smallO.png);
-    position: relative;
-    top: 15%;
-    left: 15%;
+  content: url(../imageAssets/smallO.png);
+  position: relative;
+  top: 15%;
+  left: 15%;
 }
 
 #playerInfo {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .display {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-around;
-    background-color: #E4EBDB;
-    border-radius: 10%;
-    padding: 1rem;
-    margin: 1rem;
-    height: 11rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  background-color: #e4ebdb;
+  border-radius: 10%;
+  padding: 1rem;
+  margin: 1rem;
+  height: 11rem;
 }
 
 .display img {
-    height: 100px;
+  height: 100px;
 }
 
 .scoreDisplay {
-    display: flex;
-    justify-content: space-around;
-    width: 90%;
-    font-size: 2rem;
+  display: flex;
+  justify-content: space-around;
+  width: 90%;
+  font-size: 2rem;
 }
 
 .scoreDisplay img {
-    height: 30px;
+  height: 30px;
 }
 
 .scoreBoardText {
-    font-size: 1.5rem;
-    padding-bottom: .5rem;
-    color: #75AA31;
+  font-size: 1.5rem;
+  padding-bottom: 0.5rem;
+  color: #75aa31;
 }
 
-button {
-    margin: 1rem;
-    padding: 1rem;
-    border-radius: 50px;
-    border: none;
-    background-color: #94BF54;
+#startButton {
+  margin: 1rem;
+  color: #e4ebdb;
+  background-color: #94bf54;
+  border-style: none;
+  font-size: 2rem;
+  padding: 1rem;
+  border-radius: 50px;
 }
 
 .playerOneColor {
-    color: #F9B233;
+  color: #f9b233;
 }
 
 .playerTwoColor {
-    color: #E6332A;
+  color: #e6332a;
 }
 
 .instructions {
-    position: relative;
-    margin-bottom: 5px;
-    left: 20px;
+  position: relative;
+  margin-bottom: 5px;
+  left: 20px;
 }
 
 #instructionsContainer {
-    background-color: #94BF54;
-    padding: 1rem;
-    border-radius: 25px;
-    width: 87%;
-    margin: auto;
+  background-color: #94bf54;
+  padding: 1rem;
+  border-radius: 25px;
+  width: 87%;
+  margin: auto;
 }
