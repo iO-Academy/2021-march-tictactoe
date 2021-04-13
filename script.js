@@ -5,6 +5,8 @@ let currentPlayer = 1;
 let playerMarker;
 const tiles = document.querySelectorAll('.tile');
 let gameState = ["", "", "", "", "", "", "", "", ""];
+//this is a boolean to regulate whether a player can click a tile. 
+let notClicked;
 
 function incrementCurrentPlayer() {
     currentPlayer++;
@@ -49,10 +51,10 @@ startBtn.addEventListener("click", () => {
                 //and increment playerScore for next round
                 if(notClicked == true) {
                     addToScreen(tile, playerMarker);
+                    console.log(currentPlayer);
                     currentPlayer = incrementCurrentPlayer(currentPlayer);
                 }
             })
         })
     })
-
 
