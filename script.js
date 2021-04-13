@@ -60,37 +60,38 @@ function addToScreen(tile) {
 // }
 
 
-let gameIsRunning = false;
+
 
 let startBtn = document.querySelector("#startButton");
 
 startBtn.addEventListener("click", () => {
-    console.log('hello')
     startBtn.style.opacity = 0.5;
-    gameIsRunning = true;
-    while (gameIsRunning && currentPlayer < 9 ) {
-        tiles.forEach(function (tile) {
-            tile.addEventListener('click', () => {
-                console.log(tile);
-                let clicked = tile.dataset.index;
-                console.log(clicked);
-                //assigns player marker based on currentPlayer value
-                decideTurn(currentPlayer, playerMarker);
-                //gets index value of tile from data attribute
 
-                //as long as tile has not been clicked,
-                //will add mark to gameState array
-                //and increment playerScore for next round
-                if(gameState[clicked] == "") {
-                    addToScreen(tile);
-                    // alterGameState();
-                }
-                if (currentPlayer >= 9) {
-                    gameIsRunning = false;
-                }
-            })
+    tiles.forEach(function (tile) {
+        tile.addEventListener('click', () => {
+            console.log(tile);
+            let clicked = tile.dataset.index;
+            console.log(clicked);
+            //assigns player marker based on currentPlayer value
+            decideTurn(currentPlayer, playerMarker);
+            //gets index value of tile from data attribute
+
+            //as long as tile has not been clicked,
+            //will add mark to gameState array
+            //and increment playerScore for next round
+            if(gameState[clicked] == "") {
+                addToScreen(tile);
+                // alterGameState();
+            }
+            if (currentPlayer >= 9) {
+                gameIsRunning = false;
+            }
         })
-    }
+    })
+
+  //  while (gameIsRunning && currentPlayer < 9 ) {
+
+    //}
 });
 
 
