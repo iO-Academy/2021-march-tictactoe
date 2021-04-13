@@ -31,7 +31,7 @@ function playGame() {
     // this variable holds alternating player symbols
     let playerMarker;
     const tiles = document.querySelectorAll('.tile');
-    let gameState = ["", "", "", "", "", "", "", "", ""];
+    var gameState = ["", "", "", "", "", "", "", "", ""];
     //this is a boolean to regulate whether a player can click a tile.
     let notClicked;
     startBtn.removeEventListener('click', playGame, false)
