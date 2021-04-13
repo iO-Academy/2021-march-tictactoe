@@ -1,6 +1,7 @@
 let startBtn = document.querySelector("#startButton");
 startBtn.addEventListener("click", playGame);
-
+//ash says we can use this as a global object
+let gameState = ["", "", "", "", "", "", "", "", ""];
 function incrementCurrentPlayer(currentPlayer) {
     currentPlayer++;
     return currentPlayer;
@@ -24,14 +25,12 @@ function alterGameState(gameState, clicked, playerMarker) {
         return false;
     }
 }
-
 function playGame() {
     // this determines turn order
     let currentPlayer = 1;
     // this variable holds alternating player symbols
     let playerMarker;
     const tiles = document.querySelectorAll('.tile');
-    var gameState = ["", "", "", "", "", "", "", "", ""];
     //this is a boolean to regulate whether a player can click a tile.
     let notClicked;
     startBtn.removeEventListener('click', playGame, false)
@@ -49,7 +48,11 @@ function playGame() {
             if(notClicked == true) {
                 addToScreen(tile, playerMarker);
                 currentPlayer = incrementCurrentPlayer(currentPlayer);
+                hereYouGoStoryFive();
             }
         })
     })
+}
+function hereYouGoStoryFive() {
+    console.log(gameState);
 }
