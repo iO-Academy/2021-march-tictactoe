@@ -1,6 +1,6 @@
-let startBtn = document
-  .querySelector("#startButton")
-  .addEventListener("click", () => {
-    //function to start game
-    startGame();
-  });
+let startBtn = document.querySelector("#startButton");
+
+startBtn.addEventListener("click", () => {
+  startBtn.style.opacity = 0.5;
+  startGame();
+});
