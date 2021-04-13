@@ -11,18 +11,37 @@ let playerOne =
         score: 0,
     }
 
- // playerOne go when odd, playerTwo go when even. Increments.
- let currentPlayer = 1;
+// playerOne go when odd, playerTwo go when even. Increments.
+let currentPlayer = 1;
+let playerMarker = 'x';
 
 let grid = document.querySelectorAll('.index');
 gameState = ["", "", "", "", "", "", "", "", ""];
 
 console.log(grid);
+
+
 index.forEach(function (cell) {
     cell.addEventListener('click', () => {
-        alterGameState();
-        add to
-        sdjghbdgb
+        //change marker depending on go
+        if (currentPlayer / 2 == 0) {
+            playerMarker = 'o'
+        } else {
+            playerMarker = 'x'
+        }
+        if (gameState[cellIndex]) !== "") {
+
+            alterGameState();
+            add to
+            currentPlayer++
+        }
+
     })
 })
 
+
+function alterGameState() {
+    let clicked = data - index.getAttribute
+    //push marker to indexed item in array
+    gameState.splice(clicked, 0, playerMarker)
+}
