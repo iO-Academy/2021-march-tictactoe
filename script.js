@@ -1,18 +1,10 @@
 let startBtn = document.querySelector("#startButton");
-// this determines turn order
-let currentPlayer = 1;
-// this variable holds alternating player symbols
-let playerMarker;
-const tiles = document.querySelectorAll('.tile');
-let gameState = ["", "", "", "", "", "", "", "", ""];
-//this is a boolean to regulate whether a player can click a tile. 
-let notClicked;
+startBtn.addEventListener("click", playGame);
 
-function incrementCurrentPlayer() {
+function incrementCurrentPlayer(currentPlayer) {
     currentPlayer++;
     return currentPlayer;
 }
-
 function decideTurn(currentPlayer, playerMarker) {
     if (currentPlayer % 2 == 0) {
         playerMarker = 'o'
@@ -21,23 +13,28 @@ function decideTurn(currentPlayer, playerMarker) {
     }
     return playerMarker;
 }
-
 function addToScreen(tile, playerMarker) {
     tile.innerHTML = playerMarker;
 }
-
 function alterGameState(gameState, clicked, playerMarker) {
     if(gameState[clicked] == "") {
         gameState[clicked] = playerMarker;
-        console.log(gameState[clicked]);
-        console.log(gameState);
         return true;
     } else {
         return false;
     }
 }
 
-startBtn.addEventListener("click", () => {
+function playGame() {
+    // this determines turn order
+    let currentPlayer = 1;
+    // this variable holds alternating player symbols
+    let playerMarker;
+    const tiles = document.querySelectorAll('.tile');
+    let gameState = ["", "", "", "", "", "", "", "", ""];
+    //this is a boolean to regulate whether a player can click a tile.
+    let notClicked;
+    startBtn.removeEventListener('click', playGame, false)
     startBtn.style.opacity = 0.5;
     tiles.forEach(function (tile) {
         tile.addEventListener('click', () => {
@@ -51,10 +48,8 @@ startBtn.addEventListener("click", () => {
             //and increment playerScore for next round
             if(notClicked == true) {
                 addToScreen(tile, playerMarker);
-                console.log(currentPlayer);
                 currentPlayer = incrementCurrentPlayer(currentPlayer);
             }
         })
     })
-})
-
+}
