@@ -61,6 +61,12 @@ section {
     border-radius: 5%;
 }
 
+.tile {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 #playerInfo {
     display: grid;
     grid-template-columns: 1fr;
@@ -120,7 +126,7 @@ button {
     left: 20px;
 }
 
-footer {
+#instructionsContainer {
     background-color: #94BF54;
     padding: 1rem;
     border-radius: 25px;
