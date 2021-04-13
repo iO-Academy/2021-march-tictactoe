@@ -29,6 +29,8 @@ header {
 
 section {
     display: flex;
+    justify-content: space-between;
+    margin-bottom: 5px;
     border: 1px solid white;
 }
 
@@ -43,8 +45,8 @@ section {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(3, 1fr);
-    height: 33rem;
-    width: 33rem;
+    height: 35rem;
+    width: 35rem;
     background-color: #E4EBDB;
     border-radius: 5%;
     border: 1px solid white;
@@ -87,6 +89,11 @@ section {
 }
 
 button {
+    margin: 1rem;
+    padding: 1rem;
+    border-radius: 50px;
+    border: none;
+    background-color: #94BF54;
     color: black;
 }
 
@@ -96,4 +103,10 @@ button {
 
 .playerTwoColor {
     color: #E6332A;
+}
+
+.instructions {
+    position: relative;
+    margin-bottom: 5px;
+    left: 20px;
 }
