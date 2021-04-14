@@ -13,10 +13,11 @@ function addToScreen(tile, currentPlayer) {
     tile.innerHTML = currentPlayer;
 }
 function alterGameState(gameState, clicked, currentPlayer) {
-    if(gameState[clicked] == "") {
+    if(gameState[clicked] === "") {
         gameState[clicked] = currentPlayer;
         return true;
-    }
+     }
+        return false;
 }
 
 function playGame() {
