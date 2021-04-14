@@ -47,8 +47,20 @@ function playGame() {
 }
 
 function showModal(winner) {
+  let close = document.querySelector(".close");
   let modal = document.querySelector(".modal");
   let displayWinner = document.querySelector("#displayWinner");
-  modal.style.hidden = "visible";
+
+  modal.style.display = "block";
+  if (winner.includes("1")) {
+    displayWinner.style.color = "#f9b233";
+  }
+  if (winner.includes("2")) {
+    displayWinner.style.color = "#e6332a";
+  }
   displayWinner.textContent = winner;
+
+  close.addEventListener("click", () => {
+    modal.style.display = "none";
+  });
 }
