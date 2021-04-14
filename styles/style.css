@@ -151,3 +151,41 @@ section {
   width: 87%;
   margin: auto;
 }
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  padding-top: 400px;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.527);
+  backdrop-filter: blur(8px);
+}
+
+.close {
+  right: 10px;
+  position: absolute;
+  color: #75aa31;
+}
+
+.close:hover {
+  cursor: pointer;
+}
+
+.modalContent {
+  border-radius: 50px;
+  position: relative;
+  background-color: #e4ebdb;
+  margin: auto;
+  width: 60%;
+  font-size: 5rem;
+  text-align: center;
+}
+
+#displayWinner {
+  padding: 5rem;
+}
