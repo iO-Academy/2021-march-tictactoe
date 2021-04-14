@@ -27,7 +27,6 @@ function playGame() {
     let currentPlayer = 'x';
     const tiles = document.querySelectorAll('.tile');
     //this is a boolean to regulate whether a player can click a tile.
-    let notYetClicked;
     startBtn.removeEventListener('click', playGame, false);
     startBtn.style.opacity = 0.5;
     tiles.forEach(function (tile) {
