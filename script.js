@@ -5,44 +5,46 @@ let gameState = ["", "", "", "", "", "", "", "", ""];
 
 function decideTurn(currentPlayer) {
     if (currentPlayer === 'o') {
-        return 'x'
+        return 'x';
     }   else  {
-        return  'o'
+        return  'o';
     }
 }
 function addToScreen(tile, currentPlayer) {
     tile.innerHTML = currentPlayer;
 }
 function alterGameState(gameState, clicked, currentPlayer) {
-    if(gameState[clicked] === "") {
+    if(gameState[clicked] == "") {
         gameState[clicked] = currentPlayer;
         return true;
+    } else {
+        return false;
     }
 }
 
 function playGame() {
     // this determines turn order
     // this variable holds alternating player symbols
-    let currentPlayer = 'o';
+    let currentPlayer = 'x';
     const tiles = document.querySelectorAll('.tile');
     //this is a boolean to regulate whether a player can click a tile.
     let notClicked;
-    startBtn.removeEventListener('click', playGame, false)
+    startBtn.removeEventListener('click', playGame, false);
     startBtn.style.opacity = 0.5;
     tiles.forEach(function (tile) {
         tile.addEventListener('click', () => {
             //gets index value of tile from data attribute
             let clicked = tile.dataset.index;
             //assigns player marker based on currentPlayer value
-            currentPlayer = decideTurn(currentPlayer);
             let notClicked = alterGameState(gameState, clicked, currentPlayer);
-            console.log(currentPlayer)
             //as long as tile has not been clicked,
             //will add mark to gameState array
             //and increment playerScore for next round
-            if(notClicked === true) {
+            if(notClicked) {
                 addToScreen(tile, currentPlayer);
+                currentPlayer = decideTurn(currentPlayer);
             }
         })
+
     })
 }
