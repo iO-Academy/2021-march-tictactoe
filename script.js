@@ -17,9 +17,7 @@ function alterGameState(gameState, clicked, currentPlayer) {
     if(gameState[clicked] == "") {
         gameState[clicked] = currentPlayer;
         return true;
-    } else {
-        return false;
-    }
+    } 
 }
 
 function playGame() {
