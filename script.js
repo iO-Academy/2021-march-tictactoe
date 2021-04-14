@@ -72,19 +72,15 @@ function checkWinner(gameState) {
         let indexC = set[2];
 
 
-        if (
-            gameState[indexA] === "x" &&
+        if (gameState[indexA] === "x" &&
             gameState[indexB] === "x" &&
-            gameState[indexC] === "x"
-        ) {
+            gameState[indexC] === "x") {
             winMessage = "Player 1 wins!"
         }
 
-        if (
-            gameState[indexA] === "o" &&
+        if (gameState[indexA] === "o" &&
             gameState[indexB] === "o" &&
-            gameState[indexC] === "o"
-        ) {
+            gameState[indexC] === "o") {
             winMessage = "Player 2 wins!"
         }
     })
