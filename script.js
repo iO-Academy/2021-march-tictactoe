@@ -3,6 +3,7 @@ startBtn.addEventListener("click", playGame);
 
 let gameState = ["", "", "", "", "", "", "", "", ""];
 let currentPlayer = "x";
+const tiles = document.querySelectorAll(".tile");
 
 function decideTurn(currentPlayer) {
   if (currentPlayer === "o") {
@@ -43,8 +44,13 @@ function clickEvent(event) {
   let winner = checkWinner(gameState);
 
   if (winner) {
-    showModal(winner);
+    showModal(winner)
     startBtn.addEventListener("click", playGame);
+    startBtn.style.opacity = 1
+    tiles.forEach((tile) => {
+      tile.removeEventListener('click', clickEvent)
+    })
+
   }
 }
 
@@ -82,20 +88,22 @@ function checkWinner(gameState) {
     ) {
       winMessage = "Player 2 wins!";
     }
-  });
+
+  })
 
   return winMessage;
 }
 
 function playGame() {
-  const tiles = document.querySelectorAll(".tile");
-
-  startBtn.removeEventListener("click", playGame, false);
+  startBtn.removeEventListener('click', playGame, false);
   startBtn.style.opacity = 0.5;
 
-  tiles.forEach(function (tile) {
-    tile.addEventListener("click", clickEvent);
-  });
+  tiles.forEach((tile) => {
+    gameState = ["", "", "", "", "", "", "", "", ""]
+    tile.classList.remove('clickedX')
+    tile.classList.remove('clickedO')
+    tile.addEventListener('click', clickEvent)
+  })
 }
 
 function showModal(winner) {
