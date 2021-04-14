@@ -6,9 +6,8 @@ let gameState = ["", "", "", "", "", "", "", "", ""];
 function decideTurn(currentPlayer) {
     if (currentPlayer === 'o') {
         return 'x';
-    }   else  {
-        return  'o';
     }
+        return  'o';
 }
 function addToScreen(tile, currentPlayer) {
     tile.innerHTML = currentPlayer;
@@ -17,8 +16,6 @@ function alterGameState(gameState, clicked, currentPlayer) {
     if(gameState[clicked] == "") {
         gameState[clicked] = currentPlayer;
         return true;
-    } else {
-        return false;
     }
 }
 
