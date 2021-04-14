@@ -156,7 +156,7 @@ section {
   display: none;
   position: fixed;
   z-index: 1;
-  padding-top: 40%;
+  padding-top: 400px;
   left: 0;
   top: 0;
   width: 100%;
@@ -172,12 +172,15 @@ section {
   color: #75aa31;
 }
 
+.close:hover {
+  cursor: pointer;
+}
+
 .modalContent {
   border-radius: 50px;
   position: relative;
-  background-color: #fefefe;
+  background-color: #e4ebdb;
   margin: auto;
-  border: 1px solid #888;
   width: 60%;
   font-size: 5rem;
   text-align: center;

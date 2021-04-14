@@ -64,3 +64,5 @@ function showModal(winner) {
     modal.style.display = "none";
   });
 }
+
+showModal("winner 1 wins!");
