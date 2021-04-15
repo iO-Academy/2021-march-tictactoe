@@ -8,10 +8,12 @@ let gameData = {
   turns: 0,
 };
 function decideTurn() {
-  if (gameData.currentPlayer === "o") {
-    return "x";
-  }
-  return "o";
+    if (gameData.currentPlayer === "o") {
+      document.querySelector("#playerTwoBox").style.border = "10px solid #e4ebdb";
+      return "x";
+    }
+    document.querySelector("#playerOneBox").style.border = "10px solid #e4ebdb";
+    return "o";
 }
 function addToScreen(tile) {
   if (gameData.currentPlayer === "x") {
@@ -35,11 +37,13 @@ function tileClickEvent(event) {
     addToScreen(event.target);
     gameData.currentPlayer = decideTurn();
     gameData.turns += 1;
+    chooseCursor();
   }
   let winner = checkWinner();
   if (winner) {
     calculatePlayerScores(winner);
     showModal(winner);
+    document.querySelector("#gameBoard").style.cursor = "auto";
     startBtn.addEventListener("click", playGame);
     resetBtn.removeEventListener("click", resetGame);
     startBtn.style.opacity = "1";
@@ -95,8 +99,19 @@ function checkWinner() {
   });
   return winMessage;
 }
+function chooseCursor() {
+  if (gameData.currentPlayer === "x") {
+    document.querySelector("#gameBoard").style.cursor = "url('imageAssets/tinyX.png'), auto";
+    document.querySelector("#playerOneBox").style.border = "10px solid #f9b233";
+  }
+  else if (gameData.currentPlayer === "o") {
+    document.querySelector("#gameBoard").style.cursor = "url('imageAssets/tinyO.png'), auto";
+    document.querySelector("#playerTwoBox").style.border = "10px solid #e6332a"
+  }
+}
 
 function playGame() {
+  chooseCursor();
   gameData.turns = 0;
   startBtn.removeEventListener("click", playGame, false);
   startBtn.style.opacity = "0.5";

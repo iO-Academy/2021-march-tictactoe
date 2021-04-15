@@ -102,6 +102,9 @@ section {
 .display img {
   height: 100px;
 }
+#playerOneBox, #playerTwoBox {
+  border: 10px solid #e4ebdb;
+}
 
 .scoreDisplay {
   display: flex;
