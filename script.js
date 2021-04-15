@@ -5,12 +5,14 @@ let gameState = ["", "", "", "", "", "", "", "", ""];
 let currentPlayer = "x";
 function decideTurn() {
   if (currentPlayer === "o") {
-    document.querySelector("#playerOneBox").style.border = "5px solid #e4ebdb";
-    document.querySelector("#playerTwoBox").style.border = "5px solid #e6332a";
+    document.querySelector("#playerOneBox").style.border = "10px solid #e4ebdb";
+    document.querySelector("#playerTwoBox").style.border = "10px solid #e6332a";
+    document.querySelector("#gameBoard:hover").style.cursor = "url('imageAssets/smallX.png'), auto";
     return "x";
   }
-  document.querySelector("#playerTwoBox").style.border = "5px solid #e4ebdb";
-  document.querySelector("#playerOneBox").style.border = "5px solid #f9b233";
+  document.querySelector("#gameBoard:hover").style.cursor = "url('imageAssets/smallO.png'), auto";
+  document.querySelector("#playerTwoBox").style.border = "10px solid #e4ebdb";
+  document.querySelector("#playerOneBox").style.border = "10px solid #f9b233";
    return "o";
 }
 function addToScreen(tile) {

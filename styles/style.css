@@ -60,7 +60,9 @@ section {
   background-size: cover;
   border-radius: 5%;
 }
-
+#gameBoard:hover {
+  cursor: crosshair;
+}
 .tile {
   display: flex;
   justify-content: center;
@@ -103,12 +105,12 @@ section {
   height: 100px;
 }
 #playerOneBox{
-  border: 5px solid #e4ebdb;
+  border: 10px solid #e4ebdb;
 
 }
 
 #playerTwoBox{
-  border: 5px solid #e4ebdb;
+  border: 10px solid #e4ebdb;
 }
 .scoreDisplay {
   display: flex;
