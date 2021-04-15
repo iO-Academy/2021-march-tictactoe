@@ -103,8 +103,7 @@ function chooseCursor() {
   if (gameData.currentPlayer === "x") {
     document.querySelector("#gameBoard").style.cursor = "url('imageAssets/tinyX.png'), auto";
     document.querySelector("#playerOneBox").style.border = "10px solid #f9b233";
-  }
-  else if (gameData.currentPlayer === "o") {
+  } else if (gameData.currentPlayer === "o") {
     document.querySelector("#gameBoard").style.cursor = "url('imageAssets/tinyO.png'), auto";
     document.querySelector("#playerTwoBox").style.border = "10px solid #e6332a"
   }
@@ -116,8 +115,8 @@ function playGame() {
   startBtn.removeEventListener("click", playGame, false);
   startBtn.style.opacity = "0.5";
   resetBtn.style.opacity = "1";
+  gameData.gameState = ["", "", "", "", "", "", "", "", ""];
   tiles.forEach((tile) => {
-    gameData.gameState = ["", "", "", "", "", "", "", "", ""];
     tile.classList.remove("clickedX", "clickedO");
     tile.addEventListener("click", tileClickEvent);
   });
