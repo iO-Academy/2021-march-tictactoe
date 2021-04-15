@@ -1,60 +1,47 @@
 let startBtn = document.querySelector("#startButton");
 startBtn.addEventListener("click", playGame);
-
+const tiles = document.querySelectorAll(".tile");
 let gameState = ["", "", "", "", "", "", "", "", ""];
 let currentPlayer = "x";
-const tiles = document.querySelectorAll(".tile");
-
-function decideTurn(currentPlayer) {
+function decideTurn() {
   if (currentPlayer === "o") {
     return "x";
   }
   return "o";
 }
-
-function addToScreen(tile, currentPlayer) {
+function addToScreen(tile) {
   if (currentPlayer === "x") {
     tile.classList.add("clickedX");
-  }
-  if (currentPlayer === "o") {
+  } else {
     tile.classList.add("clickedO");
   }
 }
-
-function alterGameState(gameState, clicked, currentPlayer) {
-  if (gameState[clicked] === "") {
-    gameState[clicked] = currentPlayer;
+function alterGameState(clickedTile) {
+  if (gameState[clickedTile] === "") {
+    gameState[clickedTile] = currentPlayer;
     return true;
   }
   return false;
 }
-
-function clickEvent(event) {
-  let clicked = event.target.dataset.index;
-
-  let notYetClicked = alterGameState(gameState, clicked, currentPlayer);
-
+function tileClickEvent(event) {
+  event.target.removeEventListener("click", tileClickEvent);
+  let clickedTile = event.target.dataset.index;
+  let notYetClicked = alterGameState(clickedTile);
   if (notYetClicked) {
-    addToScreen(event.target, currentPlayer);
-    currentPlayer = decideTurn(currentPlayer);
+    addToScreen(event.target);
+    currentPlayer = decideTurn();
   }
-
-  event.target.removeEventListener("click", clickEvent);
-
-  let winner = checkWinner(gameState);
-
+  let winner = checkWinner();
   if (winner) {
-    showModal(winner)
+    showModal(winner);
     startBtn.addEventListener("click", playGame);
-    startBtn.style.opacity = 1
+    startBtn.style.opacity = "1";
     tiles.forEach((tile) => {
-      tile.removeEventListener('click', clickEvent)
+      tile.removeEventListener('click', tileClickEvent);
     })
-
   }
 }
-
-function checkWinner(gameState) {
+function checkWinner() {
   let winningCombinations = [
     [0, 1, 2],
     [3, 4, 5],
@@ -65,52 +52,41 @@ function checkWinner(gameState) {
     [0, 4, 8],
     [2, 4, 6],
   ];
-
   let winMessage;
-
   winningCombinations.forEach((set) => {
     let indexA = set[0];
     let indexB = set[1];
     let indexC = set[2];
-
     if (
-      gameState[indexA] === "x" &&
-      gameState[indexB] === "x" &&
-      gameState[indexC] === "x"
+        gameState[indexA] === "x" &&
+        gameState[indexB] === "x" &&
+        gameState[indexC] === "x"
     ) {
       winMessage = "Player 1 wins!";
     }
-
     if (
-      gameState[indexA] === "o" &&
-      gameState[indexB] === "o" &&
-      gameState[indexC] === "o"
+        gameState[indexA] === "o" &&
+        gameState[indexB] === "o" &&
+        gameState[indexC] === "o"
     ) {
       winMessage = "Player 2 wins!";
     }
-
   })
-
   return winMessage;
 }
-
 function playGame() {
   startBtn.removeEventListener('click', playGame, false);
-  startBtn.style.opacity = 0.5;
-
+  startBtn.style.opacity = "0.5";
   tiles.forEach((tile) => {
-    gameState = ["", "", "", "", "", "", "", "", ""]
-    tile.classList.remove('clickedX')
-    tile.classList.remove('clickedO')
-    tile.addEventListener('click', clickEvent)
+    gameState = ["", "", "", "", "", "", "", "", ""];
+    tile.classList.remove('clickedX', 'clickedO');
+    tile.addEventListener('click', tileClickEvent);
   })
 }
-
 function showModal(winner) {
   let close = document.querySelector(".close");
   let modal = document.querySelector(".modal");
   let displayWinner = document.querySelector("#displayWinner");
-
   modal.style.display = "block";
   if (winner.includes("1")) {
     displayWinner.style.color = "#f9b233";
@@ -118,9 +94,8 @@ function showModal(winner) {
   if (winner.includes("2")) {
     displayWinner.style.color = "#e6332a";
   }
-  displayWinner.textContent = winner;
-
+  displayWinner.innerHTML = winner + '<p class="newGameMessage"> Click Start For a New Game!</p>';
   close.addEventListener("click", () => {
     modal.style.display = "none";
-  });
+  })
 }
