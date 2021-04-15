@@ -16,29 +16,30 @@
       <section>
         <div id="game">
           <div id="gameBoard">
-            <div data-index="0" class="tile"></div>
-            <div data-index="1" class="tile"></div>
-            <div data-index="2" class="tile"></div>
-            <div data-index="3" class="tile"></div>
-            <div data-index="4" class="tile"></div>
-            <div data-index="5" class="tile"></div>
-            <div data-index="6" class="tile"></div>
-            <div data-index="7" class="tile"></div>
-            <div data-index="8" class="tile"></div>
+            <div data-index="0" class="tile">T</div>
+            <div data-index="1" class="tile">I</div>
+            <div data-index="2" class="tile">C</div>
+            <div data-index="3" class="tile">T</div>
+            <div data-index="4" class="tile">A</div>
+            <div data-index="5" class="tile">C</div>
+            <div data-index="6" class="tile">T</div>
+            <div data-index="7" class="tile">O</div>
+            <div data-index="8" class="tile">E</div>
           </div>
 
           <div class="startButtonContainer">
             <button id="startButton">Start</button>
+            <button id="resetButton">Reset</button>
           </div>
         </div>
 
         <div id="playerInfo">
-          <div class="display">
+          <div class="display" id="playerOneBox">
             <p class="playerOneColor">Player One</p>
             <img src="imageAssets/bigX.png" alt="an X logo" />
           </div>
 
-          <div class="display">
+          <div class="display" id="playerTwoBox">
             <p class="playerTwoColor">Player Two</p>
             <img src="imageAssets/bigO.png" alt="an O logo" />
           </div>
@@ -85,5 +86,11 @@
         <div id="displayWinner"></div>
       </div>
     </div>
+    <audio id="victorySound" controls>
+      <source src="audio/victory.mp3" type="audio/mpeg" />
+    </audio>
+    <audio id="drawSound" controls>
+      <source src="audio/draw.mp3" type="audio/mpeg" />
+    </audio>
   </body>
 </html>

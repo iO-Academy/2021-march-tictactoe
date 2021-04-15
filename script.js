@@ -1,16 +1,43 @@
 let startBtn = document.querySelector("#startButton");
-startBtn.addEventListener("click", playGame);
+startBtn.addEventListener("click", pressStart);
+let resetBtn = document.querySelector("#resetButton");
 const tiles = document.querySelectorAll(".tile");
 let gameData = {
   gameState: ["", "", "", "", "", "", "", "", ""],
   currentPlayer: "x",
-  turns: 0
+  turns: 0,
+};
+
+function pressStart()  {
+  playGame();
+  startPrompt();
+  setTimeout(finishPrompt, 2000);
 }
+
+function finishPrompt() {
+  let displayPrompt = document.querySelectorAll('.tile')
+  displayPrompt.forEach((tile) => {
+    tile.style.color = 'transparent';
+    tile.style.transition = "ease-out 500ms";
+  })
+}
+
+function startPrompt() {
+  let displayPrompt = document.querySelectorAll('.tile')
+  displayPrompt.forEach((tile) => {
+    tile.style.color = '#e4ebdb';
+    tile.style.transition = "ease-in 500ms";
+  })
+}
+
+
 function decideTurn() {
-  if (gameData.currentPlayer === "o") {
-    return "x";
-  }
-  return "o";
+    if (gameData.currentPlayer === "o") {
+      document.querySelector("#playerTwoBox").style.border = "10px solid #e4ebdb";
+      return "x";
+    }
+    document.querySelector("#playerOneBox").style.border = "10px solid #e4ebdb";
+    return "o";
 }
 function addToScreen(tile) {
   if (gameData.currentPlayer === "x") {
@@ -33,17 +60,21 @@ function tileClickEvent(event) {
   if (notYetClicked) {
     addToScreen(event.target);
     gameData.currentPlayer = decideTurn();
-    gameData.turns+= 1;
+    gameData.turns += 1;
+    chooseCursor();
   }
   let winner = checkWinner();
   if (winner) {
     calculatePlayerScores(winner);
     showModal(winner);
+    document.querySelector("#gameBoard").style.cursor = "auto";
     startBtn.addEventListener("click", playGame);
+    resetBtn.removeEventListener("click", resetGame);
     startBtn.style.opacity = "1";
+    resetBtn.style.opacity = "0.5";
     tiles.forEach((tile) => {
-      tile.removeEventListener('click', tileClickEvent);
-    })
+      tile.removeEventListener("click", tileClickEvent);
+    });
   }
 }
 function calculatePlayerScores(winner) {
@@ -67,42 +98,66 @@ function checkWinner() {
     [0, 4, 8],
     [2, 4, 6],
   ];
-  let winMessage = '';
+  let winMessage = "";
   winningCombinations.forEach((set) => {
     let indexA = set[0];
     let indexB = set[1];
     let indexC = set[2];
     if (
-        gameData.gameState[indexA] === "x" &&
-        gameData.gameState[indexB] === "x" &&
-        gameData.gameState[indexC] === "x"
+      gameData.gameState[indexA] === "x" &&
+      gameData.gameState[indexB] === "x" &&
+      gameData.gameState[indexC] === "x"
     ) {
       winMessage = "Player 1 wins!";
     }
     if (
-        gameData.gameState[indexA] === "o" &&
-        gameData.gameState[indexB] === "o" &&
-        gameData.gameState[indexC] === "o"
+      gameData.gameState[indexA] === "o" &&
+      gameData.gameState[indexB] === "o" &&
+      gameData.gameState[indexC] === "o"
     ) {
       winMessage = "Player 2 wins!";
     }
-    if (winMessage === '' && gameData.turns === 9){
-      winMessage = "It's a draw"
+    if (winMessage === "" && gameData.turns === 9) {
+      winMessage = "It's a draw";
     }
-  })
+  });
   return winMessage;
+}
+function chooseCursor() {
+  if (gameData.currentPlayer === "x") {
+    document.querySelector("#gameBoard").style.cursor = "url('imageAssets/tinyX.png'), auto";
+    document.querySelector("#playerOneBox").style.border = "10px solid #f9b233";
+  } else if (gameData.currentPlayer === "o") {
+    document.querySelector("#gameBoard").style.cursor = "url('imageAssets/tinyO.png'), auto";
+    document.querySelector("#playerTwoBox").style.border = "10px solid #e6332a"
+  }
 }
 
 function playGame() {
+  chooseCursor();
   gameData.turns = 0;
-  startBtn.removeEventListener('click', playGame, false);
+  startBtn.removeEventListener("click", pressStart, false);
   startBtn.style.opacity = "0.5";
+  resetBtn.style.opacity = "1";
+  gameData.gameState = ["", "", "", "", "", "", "", "", ""];
   tiles.forEach((tile) => {
-    gameData.gameState = ["", "", "", "", "", "", "", "", ""];
-    tile.classList.remove('clickedX', 'clickedO');
-    tile.addEventListener('click', tileClickEvent);
-  })
+    tile.classList.remove("clickedX", "clickedO");
+    tile.addEventListener("click", tileClickEvent);
+  });
 }
+function resetGame() {
+  startBtn.addEventListener('click', pressStart, false);
+  startBtn.style.opacity = "1";
+  resetBtn.style.opacity = "0.5";
+  gameState = ["", "", "", "", "", "", "", "", ""];
+  tiles.forEach((tile) => {
+    tile.classList.remove('clickedX', 'clickedO');
+    tile.removeEventListener('click', tileClickEvent);
+})
+}
+
+resetBtn.addEventListener('click', resetGame);
+
 function showModal(winner) {
   let close = document.querySelector(".close");
   let modal = document.querySelector(".modal");
@@ -110,15 +165,30 @@ function showModal(winner) {
   modal.style.display = "block";
   if (winner.includes("1")) {
     displayWinner.style.color = "#f9b233";
+    playWinAudio();
   }
   if (winner.includes("2")) {
     displayWinner.style.color = "#e6332a";
+    playWinAudio();
   }
+
   if (winner.includes("draw")) {
     displayWinner.style.color = "#75aa31";
+    playDrawAudio();
   }
-  displayWinner.innerHTML = winner + '<p class="newGameMessage"> Click Start For a New Game!</p>';
+  displayWinner.innerHTML =
+    winner + '<p class="newGameMessage">Click Start For a New Game!</p>';
   close.addEventListener("click", () => {
     modal.style.display = "none";
-  })
+  });
+}
+
+function playWinAudio() {
+  let victorySound = document.querySelector("#victorySound");
+  victorySound.play();
+}
+
+function playDrawAudio() {
+  let drawSound = document.querySelector("#drawSound");
+  drawSound.play();
 }
