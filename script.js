@@ -5,9 +5,13 @@ let gameState = ["", "", "", "", "", "", "", "", ""];
 let currentPlayer = "x";
 function decideTurn() {
   if (currentPlayer === "o") {
+    document.querySelector("#playerOneBox").style.border = "5px solid #e4ebdb";
+    document.querySelector("#playerTwoBox").style.border = "5px solid #e6332a";
     return "x";
   }
-  return "o";
+  document.querySelector("#playerTwoBox").style.border = "5px solid #e4ebdb";
+  document.querySelector("#playerOneBox").style.border = "5px solid #f9b233";
+   return "o";
 }
 function addToScreen(tile) {
   if (currentPlayer === "x") {
