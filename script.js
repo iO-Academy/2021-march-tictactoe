@@ -111,7 +111,7 @@ function showModal(winner) {
     playDrawAudio();
   }
   displayWinner.innerHTML =
-    winner + '<p class="newGameMessage"> Click Start For a New Game!</p>';
+    winner + '<p class="newGameMessage">Click Start For a New Game!</p>';
   close.addEventListener("click", () => {
     modal.style.display = "none";
   });
