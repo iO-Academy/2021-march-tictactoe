@@ -1,25 +1,27 @@
 let startBtn = document.querySelector("#startButton");
 startBtn.addEventListener("click", playGame);
 const tiles = document.querySelectorAll(".tile");
-let gameState = ["", "", "", "", "", "", "", "", ""];
-let currentPlayer = "x";
-let turns;
+let gameData = {
+  gameState: ["", "", "", "", "", "", "", "", ""],
+  currentPlayer: "x",
+  turns: 0
+}
 function decideTurn() {
-  if (currentPlayer === "o") {
+  if (gameData.currentPlayer === "o") {
     return "x";
   }
   return "o";
 }
 function addToScreen(tile) {
-  if (currentPlayer === "x") {
+  if (gameData.currentPlayer === "x") {
     tile.classList.add("clickedX");
   } else {
     tile.classList.add("clickedO");
   }
 }
 function alterGameState(clickedTile) {
-  if (gameState[clickedTile] === "") {
-    gameState[clickedTile] = currentPlayer;
+  if (gameData.gameState[clickedTile] === "") {
+    gameData.gameState[clickedTile] = gameData.currentPlayer;
     return true;
   }
   return false;
@@ -30,8 +32,8 @@ function tileClickEvent(event) {
   let notYetClicked = alterGameState(clickedTile);
   if (notYetClicked) {
     addToScreen(event.target);
-    currentPlayer = decideTurn();
-    turns++;
+    gameData.currentPlayer = decideTurn();
+    gameData.turns+= 1;
   }
   let winner = checkWinner();
   if (winner) {
@@ -60,32 +62,33 @@ function checkWinner() {
     let indexB = set[1];
     let indexC = set[2];
     if (
-        gameState[indexA] === "x" &&
-        gameState[indexB] === "x" &&
-        gameState[indexC] === "x"
+        gameData.gameState[indexA] === "x" &&
+        gameData.gameState[indexB] === "x" &&
+        gameData.gameState[indexC] === "x"
     ) {
       winMessage = "Player 1 wins!";
     }
     if (
-        gameState[indexA] === "o" &&
-        gameState[indexB] === "o" &&
-        gameState[indexC] === "o"
+        gameData.gameState[indexA] === "o" &&
+        gameData.gameState[indexB] === "o" &&
+        gameData.gameState[indexC] === "o"
     ) {
       winMessage = "Player 2 wins!";
     }
-    if (winMessage == '' && turns === 9){
+    if (winMessage === '' && gameData.turns === 9){
       winMessage = "It's a draw"
     }
   })
+  console.log(winMessage)
   return winMessage;
 }
 
 function playGame() {
-  turns = 0;
+  gameData.turns = 0;
   startBtn.removeEventListener('click', playGame, false);
   startBtn.style.opacity = "0.5";
   tiles.forEach((tile) => {
-    gameState = ["", "", "", "", "", "", "", "", ""];
+    gameData.gameState = ["", "", "", "", "", "", "", "", ""];
     tile.classList.remove('clickedX', 'clickedO');
     tile.addEventListener('click', tileClickEvent);
   })
@@ -100,6 +103,9 @@ function showModal(winner) {
   }
   if (winner.includes("2")) {
     displayWinner.style.color = "#e6332a";
+  }
+  if (winner.includes("draw")) {
+    displayWinner.style.color = "#75aa31";
   }
   displayWinner.innerHTML = winner + '<p class="newGameMessage"> Click Start For a New Game!</p>';
   close.addEventListener("click", () => {
