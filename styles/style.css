@@ -65,6 +65,8 @@ section {
   display: flex;
   justify-content: center;
   align-items: center;
+  color: transparent;
+  font-size: 4em;
 }
 
 .clickedX {

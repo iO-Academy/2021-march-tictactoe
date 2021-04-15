@@ -1,5 +1,5 @@
 let startBtn = document.querySelector("#startButton");
-startBtn.addEventListener("click", playGame);
+startBtn.addEventListener("click", pressStart);
 let resetBtn = document.querySelector("#resetButton");
 const tiles = document.querySelectorAll(".tile");
 let gameData = {
@@ -7,6 +7,30 @@ let gameData = {
   currentPlayer: "x",
   turns: 0,
 };
+
+function pressStart()  {
+  playGame();
+  startPrompt();
+  setTimeout(finishPrompt, 2000);
+}
+
+function finishPrompt() {
+  let displayPrompt = document.querySelectorAll('.tile')
+  displayPrompt.forEach((tile) => {
+    tile.style.color = 'transparent';
+    tile.style.transition = "ease-out 500ms";
+  })
+}
+
+function startPrompt() {
+  let displayPrompt = document.querySelectorAll('.tile')
+  displayPrompt.forEach((tile) => {
+    tile.style.color = '#e4ebdb';
+    tile.style.transition = "ease-in 500ms";
+  })
+}
+
+
 function decideTurn() {
     if (gameData.currentPlayer === "o") {
       document.querySelector("#playerTwoBox").style.border = "10px solid #e4ebdb";
@@ -113,7 +137,7 @@ function chooseCursor() {
 function playGame() {
   chooseCursor();
   gameData.turns = 0;
-  startBtn.removeEventListener("click", playGame, false);
+  startBtn.removeEventListener("click", pressStart, false);
   startBtn.style.opacity = "0.5";
   resetBtn.style.opacity = "1";
   tiles.forEach((tile) => {
@@ -123,7 +147,7 @@ function playGame() {
   });
 }
 function resetGame() {
-  startBtn.addEventListener('click', playGame, false);
+  startBtn.addEventListener('click', pressStart, false);
   startBtn.style.opacity = "1";
   resetBtn.style.opacity = "0.5";
   gameState = ["", "", "", "", "", "", "", "", ""];
