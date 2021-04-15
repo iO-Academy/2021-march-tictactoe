@@ -79,7 +79,6 @@ function checkWinner() {
       winMessage = "It's a draw"
     }
   })
-  console.log(winMessage)
   return winMessage;
 }
 
