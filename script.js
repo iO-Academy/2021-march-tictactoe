@@ -1,5 +1,6 @@
 let startBtn = document.querySelector("#startButton");
 startBtn.addEventListener("click", playGame);
+let resetBtn = document.querySelector("#resetButton");
 const tiles = document.querySelectorAll(".tile");
 let gameState = ["", "", "", "", "", "", "", "", ""];
 let currentPlayer = "x";
@@ -36,7 +37,9 @@ function tileClickEvent(event) {
     calculatePlayerScores(winner);
     showModal(winner);
     startBtn.addEventListener("click", playGame);
+    resetBtn.removeEventListener("click", resetGame);
     startBtn.style.opacity = "1";
+    resetBtn.style.opacity = "0.5";
     tiles.forEach((tile) => {
       tile.removeEventListener('click', tileClickEvent);
     })
@@ -87,12 +90,26 @@ function checkWinner() {
 function playGame() {
   startBtn.removeEventListener('click', playGame, false);
   startBtn.style.opacity = "0.5";
+  resetBtn.style.opacity = "1";
   tiles.forEach((tile) => {
     gameState = ["", "", "", "", "", "", "", "", ""];
     tile.classList.remove('clickedX', 'clickedO');
     tile.addEventListener('click', tileClickEvent);
   })
 }
+function resetGame() {
+  startBtn.addEventListener('click', playGame, false);
+  startBtn.style.opacity = "1";
+  resetBtn.style.opacity = "0.5";
+  gameState = ["", "", "", "", "", "", "", "", ""];
+  tiles.forEach((tile) => {
+    tile.classList.remove('clickedX', 'clickedO');
+    tile.removeEventListener('click', tileClickEvent);
+})
+}
+
+resetBtn.addEventListener('click', resetGame);
+
 function showModal(winner) {
   let close = document.querySelector(".close");
   let modal = document.querySelector(".modal");

@@ -120,7 +120,8 @@ section {
   color: #75aa31;
 }
 
-#startButton {
+#startButton,
+#resetButton {
   margin: 1rem;
   color: #e4ebdb;
   background-color: #94bf54;
@@ -128,6 +129,10 @@ section {
   font-size: 2rem;
   padding: 1rem;
   border-radius: 50px;
+}
+
+#resetButton {
+  opacity: 0.5;
 }
 
 .playerOneColor {
