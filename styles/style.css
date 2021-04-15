@@ -189,7 +189,13 @@ section {
 #displayWinner {
   padding: 5rem;
 }
+
 audio {
   height: 0;
   width: 0;
+}
+
+.newGameMessage {
+  color: #75aa31;
+  font-size: 3rem;
 }
