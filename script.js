@@ -1,5 +1,6 @@
 let startBtn = document.querySelector("#startButton");
 startBtn.addEventListener("click", playGame);
+document.querySelector("#gameBoard").style.cursor = "url('imageAssets/tinyX.png'), auto";
 const tiles = document.querySelectorAll(".tile");
 let gameState = ["", "", "", "", "", "", "", "", ""];
 let currentPlayer = "x";
@@ -7,13 +8,15 @@ function decideTurn() {
   if (currentPlayer === "o") {
     document.querySelector("#playerOneBox").style.border = "10px solid #e4ebdb";
     document.querySelector("#playerTwoBox").style.border = "10px solid #e6332a";
-    document.querySelector("#gameBoard:hover").style.cursor = "url('imageAssets/smallX.png'), auto";
+    document.querySelector("#gameBoard:hover").style.cursor = "url('imageAssets/tinyX.png'), auto";
     return "x";
   }
-  document.querySelector("#gameBoard:hover").style.cursor = "url('imageAssets/smallO.png'), auto";
+  document.querySelector("#gameBoard:hover").style.cursor = "url('imageAssets/tinyO.png'), auto";
   document.querySelector("#playerTwoBox").style.border = "10px solid #e4ebdb";
   document.querySelector("#playerOneBox").style.border = "10px solid #f9b233";
+  console.log('hello');
    return "o";
+
 }
 function addToScreen(tile) {
   if (currentPlayer === "x") {
