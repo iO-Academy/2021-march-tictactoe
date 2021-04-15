@@ -1,6 +1,7 @@
 let startBtn = document.querySelector("#startButton");
 startBtn.addEventListener("click", playGame);
 let resetBtn = document.querySelector("#resetButton");
+resetBtn.addEventListener('click', resetGame);
 const tiles = document.querySelectorAll(".tile");
 let gameState = ["", "", "", "", "", "", "", "", ""];
 let currentPlayer = "x";
@@ -97,6 +98,7 @@ function playGame() {
     tile.addEventListener('click', tileClickEvent);
   })
 }
+
 function resetGame() {
   startBtn.addEventListener('click', playGame, false);
   startBtn.style.opacity = "1";
@@ -105,10 +107,8 @@ function resetGame() {
   tiles.forEach((tile) => {
     tile.classList.remove('clickedX', 'clickedO');
     tile.removeEventListener('click', tileClickEvent);
-})
+  })
 }
-
-resetBtn.addEventListener('click', resetGame);
 
 function showModal(winner) {
   let close = document.querySelector(".close");
