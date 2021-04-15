@@ -33,6 +33,7 @@ function tileClickEvent(event) {
   }
   let winner = checkWinner();
   if (winner) {
+    calculatePlayerScores(winner);
     showModal(winner);
     startBtn.addEventListener("click", playGame);
     startBtn.style.opacity = "1";
@@ -41,6 +42,15 @@ function tileClickEvent(event) {
     })
   }
 }
+function calculatePlayerScores(winner) {
+  if (winner === "Player 1 wins!") {
+    let playerOneScoreboard = document.querySelector('#playerOneScore');
+    playerOneScoreboard.innerHTML = parseInt(playerOneScoreboard.innerHTML) + 1;
+  }
+  else if (winner === "Player 2 wins!") {
+    let playerTwoScoreboard = document.querySelector('#playerTwoScore');
+    playerTwoScoreboard.innerHTML = parseInt(playerTwoScoreboard.innerHTML) + 1;
+  }}
 function checkWinner() {
   let winningCombinations = [
     [0, 1, 2],
