@@ -37,12 +37,23 @@ function tileClickEvent(event) {
   }
   let winner = checkWinner();
   if (winner) {
+    calculatePlayerScores(winner);
     showModal(winner);
     startBtn.addEventListener("click", playGame);
     startBtn.style.opacity = "1";
     tiles.forEach((tile) => {
       tile.removeEventListener('click', tileClickEvent);
     })
+  }
+}
+function calculatePlayerScores(winner) {
+  if (winner === "Player 1 wins!") {
+    let playerOneScoreboard = document.querySelector('#playerOneScore');
+    playerOneScoreboard.innerHTML = parseInt(playerOneScoreboard.innerHTML) + 1;
+  }
+  else if (winner === "Player 2 wins!") {
+    let playerTwoScoreboard = document.querySelector('#playerTwoScore');
+    playerTwoScoreboard.innerHTML = parseInt(playerTwoScoreboard.innerHTML) + 1;
   }
 }
 function checkWinner() {
