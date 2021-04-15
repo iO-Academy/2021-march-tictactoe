@@ -54,7 +54,8 @@ function calculatePlayerScores(winner) {
   else if (winner === "Player 2 wins!") {
     let playerTwoScoreboard = document.querySelector('#playerTwoScore');
     playerTwoScoreboard.innerHTML = parseInt(playerTwoScoreboard.innerHTML) + 1;
-  }}
+  }
+}
 function checkWinner() {
   let winningCombinations = [
     [0, 1, 2],
