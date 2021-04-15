@@ -60,9 +60,7 @@ section {
   background-size: cover;
   border-radius: 5%;
 }
-#gameBoard:hover {
-  cursor: crosshair;
-}
+
 .tile {
   display: flex;
   justify-content: center;

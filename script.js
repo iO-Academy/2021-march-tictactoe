@@ -8,13 +8,12 @@ function decideTurn() {
   if (currentPlayer === "o") {
     document.querySelector("#playerOneBox").style.border = "10px solid #e4ebdb";
     document.querySelector("#playerTwoBox").style.border = "10px solid #e6332a";
-    document.querySelector("#gameBoard:hover").style.cursor = "url('imageAssets/tinyX.png'), auto";
+    document.querySelector("#gameBoard").style.cursor = "url('imageAssets/tinyX.png'), auto";
     return "x";
   }
-  document.querySelector("#gameBoard:hover").style.cursor = "url('imageAssets/tinyO.png'), auto";
   document.querySelector("#playerTwoBox").style.border = "10px solid #e4ebdb";
   document.querySelector("#playerOneBox").style.border = "10px solid #f9b233";
-  console.log('hello');
+  document.querySelector("#gameBoard").style.cursor = "url('imageAssets/tinyO.png'), auto";
    return "o";
 
 }
