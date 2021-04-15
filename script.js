@@ -5,8 +5,8 @@ const tiles = document.querySelectorAll(".tile");
 let gameData = {
   gameState: ["", "", "", "", "", "", "", "", ""],
   currentPlayer: "x",
-  turns: 0
-}
+  turns: 0,
+};
 function decideTurn() {
   if (gameData.currentPlayer === "o") {
     return "x";
@@ -34,7 +34,7 @@ function tileClickEvent(event) {
   if (notYetClicked) {
     addToScreen(event.target);
     gameData.currentPlayer = decideTurn();
-    gameData.turns+= 1;
+    gameData.turns += 1;
   }
   let winner = checkWinner();
   if (winner) {
@@ -45,8 +45,8 @@ function tileClickEvent(event) {
     startBtn.style.opacity = "1";
     resetBtn.style.opacity = "0.5";
     tiles.forEach((tile) => {
-      tile.removeEventListener('click', tileClickEvent);
-    })
+      tile.removeEventListener("click", tileClickEvent);
+    });
   }
 }
 function calculatePlayerScores(winner) {
@@ -70,42 +70,42 @@ function checkWinner() {
     [0, 4, 8],
     [2, 4, 6],
   ];
-  let winMessage = '';
+  let winMessage = "";
   winningCombinations.forEach((set) => {
     let indexA = set[0];
     let indexB = set[1];
     let indexC = set[2];
     if (
-        gameData.gameState[indexA] === "x" &&
-        gameData.gameState[indexB] === "x" &&
-        gameData.gameState[indexC] === "x"
+      gameData.gameState[indexA] === "x" &&
+      gameData.gameState[indexB] === "x" &&
+      gameData.gameState[indexC] === "x"
     ) {
       winMessage = "Player 1 wins!";
     }
     if (
-        gameData.gameState[indexA] === "o" &&
-        gameData.gameState[indexB] === "o" &&
-        gameData.gameState[indexC] === "o"
+      gameData.gameState[indexA] === "o" &&
+      gameData.gameState[indexB] === "o" &&
+      gameData.gameState[indexC] === "o"
     ) {
       winMessage = "Player 2 wins!";
     }
-    if (winMessage === '' && gameData.turns === 9){
-      winMessage = "It's a draw"
+    if (winMessage === "" && gameData.turns === 9) {
+      winMessage = "It's a draw";
     }
-  })
+  });
   return winMessage;
 }
 
 function playGame() {
   gameData.turns = 0;
-  startBtn.removeEventListener('click', playGame, false);
+  startBtn.removeEventListener("click", playGame, false);
   startBtn.style.opacity = "0.5";
   resetBtn.style.opacity = "1";
   tiles.forEach((tile) => {
     gameData.gameState = ["", "", "", "", "", "", "", "", ""];
-    tile.classList.remove('clickedX', 'clickedO');
-    tile.addEventListener('click', tileClickEvent);
-  })
+    tile.classList.remove("clickedX", "clickedO");
+    tile.addEventListener("click", tileClickEvent);
+  });
 }
 function resetGame() {
   startBtn.addEventListener('click', playGame, false);
@@ -127,15 +127,30 @@ function showModal(winner) {
   modal.style.display = "block";
   if (winner.includes("1")) {
     displayWinner.style.color = "#f9b233";
+    playWinAudio();
   }
   if (winner.includes("2")) {
     displayWinner.style.color = "#e6332a";
+    playWinAudio();
   }
+
   if (winner.includes("draw")) {
     displayWinner.style.color = "#75aa31";
+    playDrawAudio();
   }
-  displayWinner.innerHTML = winner + '<p class="newGameMessage"> Click Start For a New Game!</p>';
+  displayWinner.innerHTML =
+    winner + '<p class="newGameMessage">Click Start For a New Game!</p>';
   close.addEventListener("click", () => {
     modal.style.display = "none";
-  })
+  });
+}
+
+function playWinAudio() {
+  let victorySound = document.querySelector("#victorySound");
+  victorySound.play();
+}
+
+function playDrawAudio() {
+  let drawSound = document.querySelector("#drawSound");
+  drawSound.play();
 }

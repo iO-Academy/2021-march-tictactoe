@@ -195,6 +195,10 @@ section {
   padding: 5rem;
 }
 
+audio {
+  display: none;
+}
+
 .newGameMessage {
   color: #75aa31;
   font-size: 3rem;
