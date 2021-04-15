@@ -106,20 +106,24 @@ function showModal(winner) {
   modal.style.display = "block";
   if (winner.includes("1")) {
     displayWinner.style.color = "#f9b233";
-    playAudio();
   }
   if (winner.includes("2")) {
     displayWinner.style.color = "#e6332a";
   }
   displayWinner.textContent = winner;
+  playWinAudio();
 
   close.addEventListener("click", () => {
     modal.style.display = "none";
   });
 }
 
-function playAudio(winner) {
-  // let drawSound = document.querySelector("");
+function playWinAudio() {
   let victorySound = document.querySelector("#victorySound");
   victorySound.play();
+}
+
+function playDrawAudio() {
+  let drawSound = document.querySelector("#drawSound");
+  drawSound.play();
 }
