@@ -106,6 +106,7 @@ function showModal(winner) {
   modal.style.display = "block";
   if (winner.includes("1")) {
     displayWinner.style.color = "#f9b233";
+    playAudio();
   }
   if (winner.includes("2")) {
     displayWinner.style.color = "#e6332a";
@@ -115,4 +116,10 @@ function showModal(winner) {
   close.addEventListener("click", () => {
     modal.style.display = "none";
   });
+}
+
+function playAudio(winner) {
+  // let drawSound = document.querySelector("");
+  let victorySound = document.querySelector("#victorySound");
+  victorySound.play();
 }

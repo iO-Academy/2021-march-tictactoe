@@ -189,3 +189,7 @@ section {
 #displayWinner {
   padding: 5rem;
 }
+audio {
+  height: 0;
+  width: 0;
+}
