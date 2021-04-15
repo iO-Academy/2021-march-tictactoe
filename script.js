@@ -3,6 +3,7 @@ startBtn.addEventListener("click", playGame);
 const tiles = document.querySelectorAll(".tile");
 let gameState = ["", "", "", "", "", "", "", "", ""];
 let currentPlayer = "x";
+let turns;
 function decideTurn() {
   if (currentPlayer === "o") {
     return "x";
@@ -30,6 +31,7 @@ function tileClickEvent(event) {
   if (notYetClicked) {
     addToScreen(event.target);
     currentPlayer = decideTurn();
+    turns++;
   }
   let winner = checkWinner();
   if (winner) {
@@ -52,7 +54,7 @@ function checkWinner() {
     [0, 4, 8],
     [2, 4, 6],
   ];
-  let winMessage;
+  let winMessage = '';
   winningCombinations.forEach((set) => {
     let indexA = set[0];
     let indexB = set[1];
@@ -71,10 +73,15 @@ function checkWinner() {
     ) {
       winMessage = "Player 2 wins!";
     }
+    if (winMessage == '' && turns === 9){
+      winMessage = "It's a draw"
+    }
   })
   return winMessage;
 }
+
 function playGame() {
+  turns = 0;
   startBtn.removeEventListener('click', playGame, false);
   startBtn.style.opacity = "0.5";
   tiles.forEach((tile) => {
