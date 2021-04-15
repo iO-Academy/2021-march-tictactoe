@@ -42,6 +42,7 @@ function tileClickEvent(event) {
   if (winner) {
     calculatePlayerScores(winner);
     showModal(winner);
+    document.querySelector("#gameBoard").style.cursor = "auto";
     startBtn.addEventListener("click", playGame);
     startBtn.style.opacity = "1";
     tiles.forEach((tile) => {
