@@ -68,7 +68,7 @@ function tileClickEvent(event) {
     calculatePlayerScores(winner);
     showModal(winner);
     document.querySelector("#gameBoard").style.cursor = "auto";
-    startBtn.addEventListener("click", playGame);
+    startBtn.addEventListener("click", pressStart);
     resetBtn.removeEventListener("click", resetGame);
     startBtn.style.opacity = "1";
     resetBtn.style.opacity = "0.5";
@@ -136,8 +136,9 @@ function chooseCursor() {
 function playGame() {
   chooseCursor();
   gameData.turns = 0;
-  startBtn.removeEventListener("click", pressStart, false);
+  startBtn.removeEventListener("click", pressStart);
   startBtn.style.opacity = "0.5";
+  resetBtn.addEventListener("click", resetGame);
   resetBtn.style.opacity = "1";
   gameData.gameState = ["", "", "", "", "", "", "", "", ""];
   tiles.forEach((tile) => {
@@ -145,8 +146,9 @@ function playGame() {
     tile.addEventListener("click", tileClickEvent);
   });
 }
+
 function resetGame() {
-  startBtn.addEventListener('click', pressStart, false);
+  startBtn.addEventListener('click', pressStart);
   startBtn.style.opacity = "1";
   resetBtn.style.opacity = "0.5";
   gameState = ["", "", "", "", "", "", "", "", ""];
@@ -155,8 +157,6 @@ function resetGame() {
     tile.removeEventListener('click', tileClickEvent);
 })
 }
-
-resetBtn.addEventListener('click', resetGame);
 
 function showModal(winner) {
   let close = document.querySelector(".close");
