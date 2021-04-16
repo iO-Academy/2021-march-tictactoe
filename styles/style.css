@@ -8,7 +8,12 @@
   margin: 0;
   padding: 0;
   font-family: "Cake", sans-serif;
-  color: #e4ebdb;
+  color: var(--textColor);
+}
+
+:root {
+  --textColor: #e4ebdb;
+  --bgColor: #94bf54;
 }
 
 body {
@@ -54,7 +59,7 @@ section {
   grid-template-rows: repeat(3, 1fr);
   height: 35rem;
   width: 35rem;
-  background-color: #94bf54;
+  background-color: var(--bgColor);
   background-image: url(../imageAssets/hashGrid.png);
   background-position: center;
   background-size: cover;
@@ -94,7 +99,7 @@ section {
   flex-direction: column;
   align-items: center;
   justify-content: space-around;
-  background-color: #e4ebdb;
+  background-color: var(--textColor);
   border-radius: 10%;
   padding: 1rem;
   margin: 1rem;
@@ -105,7 +110,7 @@ section {
   height: 100px;
 }
 #playerOneBox, #playerTwoBox {
-  border: 10px solid #e4ebdb;
+  border: 10px solid var(--textColor);
 }
 
 .scoreDisplay {
@@ -128,8 +133,8 @@ section {
 #startButton,
 #resetButton {
   margin: 1rem;
-  color: #e4ebdb;
-  background-color: #94bf54;
+  color: var(--textColor);
+  background-color: var(--bgColor);
   border-style: none;
   font-size: 2rem;
   padding: 1rem;
@@ -155,7 +160,7 @@ section {
 }
 
 #instructionsContainer {
-  background-color: #94bf54;
+  background-color: var(--bgColor);
   padding: 1rem;
   border-radius: 25px;
   width: 87%;
@@ -189,7 +194,7 @@ section {
 .modalContent {
   border-radius: 50px;
   position: relative;
-  background-color: #e4ebdb;
+  background-color: var(--textColor);
   margin: auto;
   width: 60%;
   font-size: 5rem;
